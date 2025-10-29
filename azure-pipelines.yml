@@ -21,17 +21,23 @@ stages:
       - script: mvn clean install -DskipTests
         displayName: "Build"
         env:
-          LT_USERNAME: $(USERNAME)
-          LT_ACCESS_KEY: $(ACCESS)
+          LT_USERNAME: "jyotiyadav"
+          LT_ACCESS_KEY: "LT_QADsSrkYtrtgR0gOQKfoxZuVqQTm1DXlbHy0Vo9JkOzJwpe"
+          # LT_USERNAME: $(USERNAME)
+          # LT_ACCESS_KEY: $(ACCESS)
 
       - script: mvn test -D suite=single.xml
         displayName: "Run tests"
         env:
-          LT_USERNAME: $(USERNAME)
-          LT_ACCESS_KEY: $(ACCESS)
+          LT_USERNAME: "jyotiyadav"
+          LT_ACCESS_KEY: "LT_QADsSrkYtrtgR0gOQKfoxZuVqQTm1DXlbHy0Vo9JkOzJwpe"
+          # LT_USERNAME: $(USERNAME)
+          # LT_ACCESS_KEY: $(ACCESS)
 
       - task: LambdatestResults@1
         displayName: "LambdaTest Results"
         env:
-          LT_USERNAME: $(USERNAME)
-          LT_ACCESS_KEY: $(ACCESS)
+          LT_USERNAME: "jyotiyadav"
+          LT_ACCESS_KEY: "LT_QADsSrkYtrtgR0gOQKfoxZuVqQTm1DXlbHy0Vo9JkOzJwpe"
+          # LT_USERNAME: $(USERNAME)
+          # LT_ACCESS_KEY: $(ACCESS)
