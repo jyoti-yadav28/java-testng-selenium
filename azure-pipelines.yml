@@ -6,8 +6,8 @@ pool:
   #vmImage: ubuntu-latest
 
 variables:
-  LT_USERNAME: "jyotiyadav"
-  LT_ACCESS_KEY: "LT_QADsSrkYtrtgR0gOQKfoxZuVqQTm1DXlbHy0Vo9JkOzJwpe"
+  LT_USERNAME: $(LT_USERNAME)
+  LT_ACCESS_KEY: $(LT_ACCESS_KEY)
 
 stages:
 - stage: BuildAndTest
@@ -21,8 +21,6 @@ stages:
       - script: mvn clean install -DskipTests
         displayName: "Build"
         env:
-          # LT_USERNAME: "jyotiyadav"
-          # LT_ACCESS_KEY: "LT_QADsSrkYtrtgR0gOQKfoxZuVqQTm1DXlbHy0Vo9JkOzJwpe"
           LT_USERNAME: $(LT_USERNAME)
           LT_ACCESS_KEY: $(LT_ACCESS_KEY)
 
@@ -35,7 +33,5 @@ stages:
       - task: LambdatestResults@1
         displayName: "LambdaTest Results"
         env:
-          # LT_USERNAME: "jyotiyadav"
-          # LT_ACCESS_KEY: "LT_QADsSrkYtrtgR0gOQKfoxZuVqQTm1DXlbHy0Vo9JkOzJwpe"
           LT_USERNAME: $(LT_USERNAME)
           LT_ACCESS_KEY: $(LT_ACCESS_KEY)
