@@ -1,0 +1,37 @@
+trigger:
+- main
+
+pool:
+  Default
+  #vmImage: ubuntu-latest
+
+variables:
+  LT_USERNAME: "$(USERNAME)"
+  LT_ACCESS_KEY: "$(ACCESS)"
+
+stages:
+- stage: BuildAndTest
+  jobs:
+  - job: BuildAndTestJob
+    steps:
+      - task: configuration@1
+        inputs:
+          connection: vaneet-test
+
+      - script: mvn clean install -DskipTests
+        displayName: "Build"
+        env:
+          LT_USERNAME: $(USERNAME)
+          LT_ACCESS_KEY: $(ACCESS)
+
+      - script: mvn test -D suite=single.xml
+        displayName: "Run tests"
+        env:
+          LT_USERNAME: $(USERNAME)
+          LT_ACCESS_KEY: $(ACCESS)
+
+      - task: LambdatestResults@1
+        displayName: "LambdaTest Results"
+        env:
+          LT_USERNAME: $(USERNAME)
+          LT_ACCESS_KEY: $(ACCESS)
