@@ -6,8 +6,8 @@ pool:
   #vmImage: ubuntu-latest
 
 variables:
-  LT_USERNAME: "$(USERNAME)"
-  LT_ACCESS_KEY: "$(ACCESS)"
+  LT_USERNAME: "jyotiyadav"
+  LT_ACCESS_KEY: "LT_QADsSrkYtrtgR0gOQKfoxZuVqQTm1DXlbHy0Vo9JkOzJwpe"
 
 stages:
 - stage: BuildAndTest
